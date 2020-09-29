@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>ANALIZADOR LEXICO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/codigoJavascript.js"></script>
+        
+    </head>
+    <body>
+        <div id="contenedor">
+            <section id="zonaFormulario">
+                <form name="formulario">
+                    <p> Archivo: <br><input type="file" name="archivos" id="archivos" onclick="introducirDatos()" onchange="introducirDatos()"></p>               
+                </form>
+            </section>
+            <button onclick="validarCadena()" id="a">Validar Cadena</button>
+            <button onclick="buscarPatrones()" id="abcde">Buscar Patrones</button>
+            <input type="text" id="textoPatron">
+            <div id="etiquetaBotonErrores" style="display:none">
+                <button onclick="mostrarTablaErrores()" id="abc">Mostrar Tabla Errores</button>
+            </div>
+            <div id="etiquetaBotonTablaTokens" style="display: none">
+            <button onclick="mostrarTablaTokens()" id="abcd">Mostrar Tabla Tokens</button>
+            <button onclick="mostrarTablaLexemas()" id="lexema">Mostrar Tabla Lexemas</button>
+            </div>
+            <br>
+            <button onclick="location='index.html'" id="botonReporteErrores">Hacer otra evaluacion</button>
+            <br>
+            <textarea id="filas" rows="20" cols="1" disabled></textarea>
+            <textarea id="zonaDatos" placeholder="Informacion" rows="20" cols="100"></textarea>
+            
+            <p id="zonaPatrones"></p>
+        </div>
+        <form onsubmit="descargarArchivo()">
+            <h2> Descargar Archivo </h2>
+
+            Nombre del archivo de texto: <input type="text" id="nombreArchivo" name="name" value="informacion.txt">
+	<p><input type="submit" value="Descargar archivo de texto"></p>
+
+        </form>
+        <div id="etiquetaTabla" style="display: none">
+        <table id="tablaErrores" style="border: 1px solid black"><!-- <table id="tablaErrores" style="border-collapse: collapse">-->
+            <thead>
+                <tr id="encabezado" style="border: 1px solid black">
+            <p>TABLA DE ERRORES</p>
+            <th style="border: 1px solid #000000" id="encabezadoLinea">Linea</th>
+            <th style="border: 1px solid #000000" id="encabezadoColumna">Columna</th>
+            <th style="border: 1px solid #000000" id="encabezadoPalabra">Palabra</th>
+                </tr>
+            </thead>
+            <tbody style="border: 1px solid black">
+                <tr style="border:1px solid black">
+                </tr>
+            </tbody>
+            <tfoot>
+		<tr>
+                    <td style="border:1px solid black" id="totalErrores">0</td>
+                    <td id="totalPalabras">0</td>
+                </tr>
+            </tfoot>
+	</table>
+            </div>
+        
+        <div id="etiquetaTablaTokens" style="display: none">
+        <table id="tablaTokens" style="border-collapse: collapse">
+            <thead>
+                <tr id="encabezadoTokens">
+           
+            <p>TABLA DE TOKENS</p>
+            <th style="border: 1px solid #000000" id="encabezadoLinea">Fila</th>
+            <th style="border: 1px solid #000000" id="encabezadoColumna">Columna</th>
+            <th style="border: 1px solid #000000" id="encabezadoToken">Token</th>
+            <th style="border: 1px solid #000000" id="encabezadoLexema">Lexema</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                </tr>
+            </tbody>
+            <tfoot>
+		<tr>
+                </tr>
+            </tfoot>
+	</table>
+            </div>
+        <div id="etiquetaTablaLexemas" style="display: none">
+        <table id="tablaLexemas" style="border-collapse: collapse">
+            <thead>
+                <tr id="encabezadoLexemas">
+            <p>TABLA DE LEXEMAS</p>
+            <th style="border: 1px solid #000000" id="encabezadoLinea">LEXEMA</th>
+            <th style="border: 1px solid #000000" id="encabezadoPalabra">VECES REPETIDO</th>
+                </tr>
+            </thead>
+            <tbody>
+		<tr></tr>
+            </tbody>
+            <tfoot>
+		<tr>
+                </tr>
+            </tfoot>
+	</table>
+            </div>
+    </body>
+</html>
+
